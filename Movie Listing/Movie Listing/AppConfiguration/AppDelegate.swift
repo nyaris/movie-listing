@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Movie Listing
-//
-//  Created by Miguel Barone on 10/07/24.
-//
-
 import UIKit
 
 @main

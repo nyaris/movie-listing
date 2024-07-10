@@ -1,10 +1,3 @@
-//
-//  Movie_ListingTests.swift
-//  Movie ListingTests
-//
-//  Created by Miguel Barone on 10/07/24.
-//
-
 import XCTest
 @testable import Movie_Listing
 

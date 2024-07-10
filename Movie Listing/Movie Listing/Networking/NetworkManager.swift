@@ -1,7 +1,7 @@
 import Foundation
 
 enum API {
-    static let baseURL = "https://618d3aa7fe09aa001744060a.mockapi.io/"
+    static let baseURL = "https://api.andrespecht.dev/"
 }
 
 enum NetworkError: Error {

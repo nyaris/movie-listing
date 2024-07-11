@@ -2,6 +2,11 @@
 
 MovieListingApp é um aplicativo desenvolvido em Swift que exibe uma lista de filmes e uma tela de erro em caso de falha na obtenção dos dados.
 
+## Fluxos
+<img width=250 src=https://github.com/nyaris/movie-listing/assets/59100459/cbc1a06d-0594-41a0-912c-92dc32ee8b9b>
+<img width=250 src=https://github.com/nyaris/movie-listing/assets/59100459/8d527b0f-fab3-4b04-a5ac-6102c0bfea56>
+<img width=250 src=https://github.com/nyaris/movie-listing/assets/59100459/2075be4f-805e-43c2-b93c-00fbe5dec3d0>
+
 ## Funcionalidades 
 
 - Exibição de uma lista de filmes com título e imagem. 

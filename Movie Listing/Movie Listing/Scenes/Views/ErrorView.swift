@@ -7,7 +7,7 @@ protocol ErrorViewDelegate: AnyObject {
 final class ErrorView: UIView {
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "error-image")
+        imageView.image = UIImage(named: Strings.errorImage)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -15,17 +15,17 @@ final class ErrorView: UIView {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ops, algo deu errado no nosso sistema"
+        label.text = Strings.errorTitle
         label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = Font.bold
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     private lazy var tryAgainButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Tentar novamente", for: .normal)
+        button.setTitle(Strings.errorButton, for: .normal)
         button.addTarget(self, action: #selector(didTapTryAgainButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 8
@@ -42,9 +42,7 @@ final class ErrorView: UIView {
     }
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { nil }
 
     @objc
     func didTapTryAgainButton() {

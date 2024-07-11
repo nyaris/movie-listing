@@ -5,7 +5,7 @@ final class HomeViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .white
         label.numberOfLines = .zero
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = Font.bold
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -32,9 +32,7 @@ final class HomeViewCell: UITableViewCell {
     }
     
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { nil }
 
     override func prepareForReuse() {
         super.prepareForReuse()

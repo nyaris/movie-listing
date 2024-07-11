@@ -8,12 +8,9 @@ protocol HomeDisplaying: AnyObject {
 }
 
 class HomeViewController: UIViewController {
-    enum Layout { 
-        static let charcoal = UIColor(red: 24 / 255, green: 39 / 255, blue: 49 / 255, alpha: 1)
-    }
-    
     let interactor: HomeInteracting
     private var datas = [MoviesData]()
+    private let homeCellId = "HomeViewCell"
 
     private lazy var loadingView: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView(style: .large)
@@ -29,7 +26,7 @@ class HomeViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(HomeViewCell.self, forCellReuseIdentifier: "HomeViewCell")
+        tableView.register(HomeViewCell.self, forCellReuseIdentifier: homeCellId)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -75,12 +72,12 @@ extension HomeViewController: ViewConfiguration {
     }
     
     func configureViews() {
-        navigationItem.title = "Filmes"
+        navigationItem.title = Strings.homeTitle
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     
 
-        view.backgroundColor = Layout.charcoal
+        view.backgroundColor = Color.charcoal
     }
 }
 
@@ -113,7 +110,7 @@ extension HomeViewController: HomeDisplaying {
 // MARK: - UITableViewDelegate
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "HomeViewCell", for: indexPath) as? HomeViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: homeCellId, for: indexPath) as? HomeViewCell else {
             return UITableViewCell()
         }
 

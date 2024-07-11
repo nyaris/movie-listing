@@ -21,6 +21,6 @@ final class HomePresenter: HomePresenting {
     }
     
     func presentErrorView() {
-        // TODO: Chamar func que cria view de erro
+        viewController?.displayErrorView()
     }
 }

@@ -33,6 +33,13 @@ class HomeViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+
+    private lazy var errorView: UIView = {
+        let errorView = ErrorView()
+        errorView.delegate = self
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        return errorView
+    }()
     
     init(interactor: HomeInteracting) {
         self.interactor = interactor
@@ -57,8 +64,8 @@ extension HomeViewController: ViewConfiguration {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8),
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
             
@@ -93,7 +100,13 @@ extension HomeViewController: HomeDisplaying {
     }
     
     func displayErrorView() {
-        // TODO: Chamar view de erro
+        view.addSubview(errorView)
+
+        NSLayoutConstraint.activate([
+            errorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+        ])
     }
 }
 
@@ -112,5 +125,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return datas.count
+    }
+}
+
+// MARK: - ErrorViewDelegate
+extension HomeViewController: ErrorViewDelegate {
+    func didTapTryAgain() {
+        errorView.removeFromSuperview()
+        interactor.fetchList()
     }
 }

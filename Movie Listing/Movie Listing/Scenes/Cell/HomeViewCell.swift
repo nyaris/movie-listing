@@ -1,16 +1,11 @@
 import UIKit
 
 final class HomeViewCell: UITableViewCell {
-    private lazy var containerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
     private lazy var title: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.numberOfLines = .zero
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -19,7 +14,16 @@ final class HomeViewCell: UITableViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.backgroundColor = .white
+        image.layer.masksToBounds = true
+        image.layer.cornerRadius = 12
         return image
+    }()
+
+    private lazy var separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -47,28 +51,27 @@ final class HomeViewCell: UITableViewCell {
 
 extension HomeViewCell: ViewConfiguration {
     func buildHierarchy() {
-        contentView.addSubview(containerView)
-
-        containerView.addSubview(title)
-        containerView.addSubview(image)
+        addSubview(title)
+        addSubview(image)
+        addSubview(separatorView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            image.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            image.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            image.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            image.heightAnchor.constraint(equalToConstant: 200),
+            image.widthAnchor.constraint(equalToConstant: 140),
 
-            image.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8),
-            image.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 8),
-            image.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            image.heightAnchor.constraint(equalToConstant: 140),
-            image.widthAnchor.constraint(equalToConstant: 100),
-
-            title.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8),
+            title.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             title.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 8),
-            title.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+            title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+
+            separatorView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            separatorView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            separatorView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            separatorView.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
     
